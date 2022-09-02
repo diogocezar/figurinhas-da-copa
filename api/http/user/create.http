@@ -1,0 +1,8 @@
+POST http://localhost:3333/user HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Diogo Cezar Teixeira Batista",
+    "email": "diogo@diogocezar.com",
+    "password": "123"
+}
