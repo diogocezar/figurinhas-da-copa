@@ -6,6 +6,12 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [StickerModule, CountryModule, UserModule, ConfigModule.forRoot(), AuthModule],
+  imports: [
+    StickerModule,
+    CountryModule,
+    UserModule,
+    ConfigModule.forRoot(),
+    AuthModule,
+  ],
 })
 export class AppModule {}
