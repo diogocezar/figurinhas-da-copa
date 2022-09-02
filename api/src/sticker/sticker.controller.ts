@@ -8,14 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { StickerService } from './sticker.service';
+import { Prisma } from '@prisma/client';
 
 @Controller('sticker')
 export class StickerController {
   constructor(private readonly stickerService: StickerService) {}
 
   @Post()
-  create(@Body() createStickerDto: any) {
-    return this.stickerService.create(createStickerDto);
+  create(@Body() createSticker: Prisma.StickerCreateInput) {
+    return this.stickerService.create(createSticker);
   }
 
   @Get()
@@ -25,16 +26,22 @@ export class StickerController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.stickerService.findOne(+id);
+    return this.stickerService.findOne({ id: +id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStickerDto: any) {
-    return this.stickerService.update(+id, updateStickerDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateSticker: Prisma.StickerUpdateInput,
+  ) {
+    return this.stickerService.update({
+      where: { id: +id },
+      data: updateSticker,
+    });
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.stickerService.remove(+id);
+    return this.stickerService.remove({ id: +id });
   }
 }

@@ -8,14 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
+import { Prisma } from '@prisma/client';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: any) {
-    return this.userService.create(createUserDto);
+  create(@Body() createUser: Prisma.UserCreateInput) {
+    return this.userService.create(createUser);
   }
 
   @Get()
@@ -25,16 +26,19 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+    return this.userService.findOne({ id: +id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: any) {
-    return this.userService.update(+id, updateUserDto);
+  update(@Param('id') id: string, @Body() updateUser: Prisma.UserUpdateInput) {
+    return this.userService.update({
+      where: { id: +id },
+      data: updateUser,
+    });
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.remove({ id: +id });
   }
 }
