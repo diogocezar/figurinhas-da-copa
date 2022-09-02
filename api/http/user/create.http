@@ -3,6 +3,6 @@ content-type: application/json
 
 {
     "name": "Diogo Cezar Teixeira Batista",
-    "email": "diogo@diogocezar.com",
-    "password": "123"
+    "email": "diogo1@diogocezar.com",
+    "password": "1234"
 }
