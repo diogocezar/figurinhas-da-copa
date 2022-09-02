@@ -1,5 +1,23 @@
-version: '3.8'
+version: "3.8"
 services:
+  api:
+    build: ./api/Dockerfile
+    ports:
+      - "3333:3333"
+    depends_on:
+      - db
+    command: yarn start:prod
+    volumes:
+      - ./api:/usr/src/api/
+  # web:
+  #   build: ./web/Dockerfile
+  #   ports:
+  #     - "3333:3333"
+  #   depends_on:
+  #     - db
+  #   command: yarn start
+  #   volumes:
+  #     - ./web:/usr/src/web/
   db:
     image: postgres:14.1-alpine
     restart: always
@@ -7,9 +25,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
-      - db:/var/lib/postgresql/data
+      - ./database:/var/lib/postgresql/data
 volumes:
   db:
     driver: local
