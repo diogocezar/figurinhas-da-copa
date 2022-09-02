@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Country {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  initials  String   @db.VarChar(3)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stickers  Sticker[]
+}
+
+model Sticker {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @db.VarChar(255)
+  number    Int
+  country   Country? @relation(fields: [countryId], references: [id])
+  users     StickersOnUsers[]
+  countryId Int?
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String   @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  stickers  StickersOnUsers[]
+}
+
+
+model StickersOnUsers {
+  sticker    Sticker  @relation(fields: [stickerId], references: [id])
+  stickerId  Int
+  user       User @relation(fields: [userId], references: [id])
+  userId     Int
+  assignedAt DateTime @default(now())
+  @@id([stickerId, userId])
+}
