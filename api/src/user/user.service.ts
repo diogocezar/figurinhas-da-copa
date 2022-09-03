@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { User, Prisma } from '@prisma/client';
 import { PrismaService } from 'src/shared/prisma.service';
-import { createPassword } from 'src/helpers/handlePassword';
+import { CreatePassword } from 'src/helpers/handlePassword';
 
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: Prisma.UserCreateInput): Promise<User> {
-    data.password = await createPassword(data.password);
+    data.password = await CreatePassword(data.password);
     return this.prisma.user.create({
       data,
     });
@@ -29,6 +29,7 @@ export class UserService {
     data: Prisma.UserUpdateInput;
   }): Promise<User> {
     const { where, data } = params;
+    // TODO: verify if exists
     return this.prisma.user.update({
       data,
       where,
@@ -36,6 +37,7 @@ export class UserService {
   }
 
   async remove(where: Prisma.UserWhereUniqueInput): Promise<User> {
+    // TODO: verify if exists
     return this.prisma.user.delete({
       where,
     });

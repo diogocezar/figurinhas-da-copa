@@ -3,8 +3,8 @@ POST http://localhost:3333/auth/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "diogo1@diogocezar.com",
-    "password": "1234"
+    "username": "admin@figurinhas.com",
+    "password": "admin"
 }
 
 ###
@@ -13,6 +13,6 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3333/user/2 HTTP/1.1
+DELETE http://localhost:3333/user/6 HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{authToken}}

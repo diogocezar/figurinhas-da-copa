@@ -5,3 +5,13 @@ content-type: application/json
     "username": "diogo@diogocezar.com",
     "password": "123"
 }
+
+###
+
+POST http://localhost:3333/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin@figurinhas.com",
+    "password": "admin"
+}

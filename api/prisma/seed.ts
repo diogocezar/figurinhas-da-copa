@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { createPassword } from '../src/helpers/handlePassword';
+import { PrismaClient, Role } from '@prisma/client';
+import { CreatePassword } from '../src/helpers/handlePassword';
 
 const prisma = new PrismaClient();
 
@@ -38,25 +38,25 @@ async function createAllStickers() {
 }
 
 async function createAdminUser() {
-  const password = await createPassword('admin');
+  const password = await CreatePassword('admin');
   await prisma.user.create({
     data: {
       name: 'Admin',
       email: 'admin@figurinhas.com',
       password,
-      role: 'ADMIN',
+      role: Role.ADMIN,
     },
   });
 }
 
 async function createUser() {
-  const password = await createPassword('123');
+  const password = await CreatePassword('123');
   await prisma.user.create({
     data: {
       name: 'Diogo Cezar',
       email: 'diogo@diogocezar.com',
       password,
-      role: 'USER',
+      role: Role.USER,
     },
   });
 }

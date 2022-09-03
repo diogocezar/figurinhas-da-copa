@@ -1,7 +1,7 @@
 import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'src/shared/prisma.service';
-import { comparePassword } from 'src/helpers/handlePassword';
+import { ComparePassword } from 'src/helpers/handlePassword';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
       },
     });
     if (!user) return null;
-    const passwordValid = await comparePassword(password, user.password);
+    const passwordValid = await ComparePassword(password, user.password);
     if (!user) {
       throw new NotAcceptableException('Could not validate user.');
     }
