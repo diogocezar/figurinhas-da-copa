@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import { createPassword } from '../src/helpers/handlePassword';
+
 const prisma = new PrismaClient();
 
 import countries from './data/contries';
@@ -6,6 +8,8 @@ import countries from './data/contries';
 async function main() {
   await createAllCountries();
   await createAllStickers();
+  await createAdminUser();
+  await createUser();
 }
 
 async function createAllCountries() {
@@ -30,6 +34,30 @@ async function createAllStickers() {
         },
       });
     }
+  });
+}
+
+async function createAdminUser() {
+  const password = await createPassword('admin');
+  await prisma.user.create({
+    data: {
+      name: 'Admin',
+      email: 'admin@figurinhas.com',
+      password,
+      role: 'ADMIN',
+    },
+  });
+}
+
+async function createUser() {
+  const password = await createPassword('123');
+  await prisma.user.create({
+    data: {
+      name: 'Diogo Cezar',
+      email: 'diogo@diogocezar.com',
+      password,
+      role: 'USER',
+    },
   });
 }
 

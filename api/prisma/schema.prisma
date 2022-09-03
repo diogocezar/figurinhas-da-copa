@@ -34,6 +34,7 @@ model User {
   email     String   @unique
   name      String   @db.VarChar(255)
   password  String   @db.VarChar(255)
+  role      Role     @default(USER)
   stickers  StickersOnUsers[]
 }
 
@@ -45,4 +46,9 @@ model StickersOnUsers {
   userId     Int
   assignedAt DateTime @default(now())
   @@id([stickerId, userId])
+}
+
+enum Role {
+  ADMIN
+  USER
 }
