@@ -16,7 +16,7 @@ export class AuthService {
     if (!user) return null;
     const passwordValid = await comparePassword(password, user.password);
     if (!user) {
-      throw new NotAcceptableException('could not find the user');
+      throw new NotAcceptableException('Could not validate user.');
     }
     if (user && passwordValid) {
       return user;
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { email: user.email, sub: user._id };
+    const payload = { email: user.email, sub: user.id, role: user.role };
     return {
       access_token: this.jwtService.sign(payload),
     };
