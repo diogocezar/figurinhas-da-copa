@@ -16,7 +16,6 @@ import { JwtAuthGuard } from '../auth/guards/jwt';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createUser: Prisma.UserCreateInput) {
     return this.userService.create(createUser);

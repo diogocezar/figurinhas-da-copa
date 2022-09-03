@@ -1,0 +1,18 @@
+# @name login
+POST http://localhost:3333/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "diogo@diogocezar.com",
+    "password": "1234"
+}
+
+###
+
+@authToken = {{login.response.body.access_token}}
+
+###
+
+GET http://localhost:3333/album HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{authToken}}
