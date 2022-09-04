@@ -74,11 +74,68 @@ export class AlbumService {
           },
         },
       },
-      orderBy: {
-        name: 'asc',
-      },
+      orderBy: [
+        {
+          country: {
+            id: 'asc',
+          },
+        },
+        { name: 'asc' },
+      ],
     });
     return missing;
+  }
+
+  async mountAlbum(request) {
+    const userId = await this.getUserId(request);
+    const stickersOnUsers = await this.prisma.stickersOnUsers.findMany({
+      select: {
+        quantity: true,
+        sticker: {
+          select: {
+            id: true,
+            number: true,
+            name: true,
+          },
+        },
+      },
+      where: { userId },
+      orderBy: {
+        sticker: {
+          number: 'asc',
+        },
+      },
+    });
+    const allSticks = await this.prisma.sticker.findMany({
+      select: {
+        id: true,
+        number: true,
+        name: true,
+        country: {
+          select: {
+            id: true,
+          },
+        },
+      },
+      orderBy: [
+        {
+          country: {
+            id: 'asc',
+          },
+        },
+        { name: 'asc' },
+      ],
+    });
+    const stickers = allSticks.map((sticker) => {
+      const stickerOnUser = stickersOnUsers.find(
+        (stickerOnUser) => stickerOnUser.sticker.id === sticker.id,
+      );
+      return {
+        ...sticker,
+        quantity: stickerOnUser ? stickerOnUser.quantity : 0,
+      };
+    });
+    return stickers;
   }
 
   private async existsSticker(stickerId: number, userId: number) {

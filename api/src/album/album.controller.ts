@@ -34,4 +34,10 @@ export class AlbumController {
   getMissingToComplete(@Request() request) {
     return this.albumService.getMissingToComplete(request);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/mount')
+  mountAlbum(@Request() request) {
+    return this.albumService.mountAlbum(request);
+  }
 }
