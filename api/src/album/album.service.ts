@@ -61,6 +61,11 @@ export class AlbumService {
       select: {
         number: true,
         name: true,
+        country: {
+          select: {
+            id: true,
+          },
+        },
       },
       where: {
         NOT: {
