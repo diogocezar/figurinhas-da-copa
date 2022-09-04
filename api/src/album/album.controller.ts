@@ -28,4 +28,10 @@ export class AlbumController {
   findAll(@Request() request) {
     return this.albumService.findAll(request);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/missing')
+  getMissingToComplete(@Request() request) {
+    return this.albumService.getMissingToComplete(request);
+  }
 }

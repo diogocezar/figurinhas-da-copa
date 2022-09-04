@@ -164,4 +164,9 @@ export default [
     initials: 'COR',
     pages: [72],
   },
+  {
+    name: 'Coca Cola',
+    initials: 'COC',
+    pages: [78],
+  },
 ];

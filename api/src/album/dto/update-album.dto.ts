@@ -1,4 +1,8 @@
+type StickerInput = {
+  id: number;
+  quantity: number;
+};
+
 export class UpdateAlbumDto {
-  includeStickerIds: number[];
-  excludeStickerIds: number[];
+  stickerIds: Array<StickerInput>;
 }

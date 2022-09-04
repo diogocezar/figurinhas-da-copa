@@ -19,7 +19,7 @@ export class UserService {
   }
 
   async findOne(where: Prisma.UserWhereUniqueInput) {
-    return this.prisma.user.findUnique({
+    return this.prisma.user.findFirstOrThrow({
       where,
     });
   }

@@ -4,7 +4,7 @@ content-type: application/json
 
 {
     "username": "diogo@diogocezar.com",
-    "password": "1234"
+    "password": "123"
 }
 
 ###
@@ -18,6 +18,16 @@ content-type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-    "includeStickerIds": [1953],
-    "excludeStickerIds": [1961, 1967]
+    "stickerIds": [{
+        "id": 7,
+        "quantity": 4
+    },
+    {
+        "id": 8,
+        "quantity": 5
+    },
+    {
+        "id": 9,
+        "quantity": 1
+    }]
 }

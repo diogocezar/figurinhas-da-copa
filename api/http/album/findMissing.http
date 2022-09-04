@@ -13,6 +13,6 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3333/album HTTP/1.1
+GET http://localhost:3333/album/missing HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{authToken}}

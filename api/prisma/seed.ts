@@ -25,10 +25,11 @@ async function createAllStickers() {
     const { id, initials } = country;
     let qtdToCreate = 20;
     if (initials === 'FWC') qtdToCreate = 29;
+    if (initials === 'COC') qtdToCreate = 8;
     for (let number = 1; number <= qtdToCreate; number++) {
       await prisma.sticker.create({
         data: {
-          name: `${initials} ${number}`,
+          name: `${initials} ${('0' + number).slice(-2)}`,
           number,
           countryId: id,
         },
