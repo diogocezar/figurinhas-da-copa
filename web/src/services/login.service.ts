@@ -1,16 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Login } from '../app/login/login.interfaces';
+import { Observable } from 'rxjs';
+import { LoginOutput } from '../app/login/login.interfaces';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private baseURL = 'http://localhost:3333/auth/login';
+  private baseURL = environment.apiBaseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
-  private setLocalStorage(accessToken: string) {
+  setLocalStorage(accessToken: string) {
     localStorage.setItem('accessToken', accessToken);
   }
 
@@ -18,11 +20,10 @@ export class LoginService {
     return localStorage.getItem('accessToken');
   }
 
-  login(username: string, password: string) {
-    this.httpClient
-      .post<Login>(this.baseURL, { username, password })
-      .subscribe((data) => {
-        this.setLocalStorage(data.access_token);
-      });
+  requestLogin(username: string, password: string): Observable<LoginOutput> {
+    return this.httpClient.post<LoginOutput>(`${this.baseURL}/auth/login`, {
+      username,
+      password,
+    });
   }
 }
