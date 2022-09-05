@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.loginService.getAccessToken()) {
-    //   this.router.navigate(['/album']);
-    // }
+    if (this.loginService.getAccessToken()) {
+      this.router.navigate(['/album']);
+    }
   }
 }

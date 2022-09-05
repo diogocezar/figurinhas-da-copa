@@ -19,15 +19,15 @@ Authorization: Bearer {{authToken}}
 
 {
     "stickerIds": [{
-        "id": 7,
+        "id": 2,
         "quantity": 4
     },
     {
-        "id": 8,
+        "id": 45,
         "quantity": 5
     },
     {
-        "id": 9,
+        "id": 77,
         "quantity": 1
     }]
 }

@@ -114,6 +114,7 @@ export class AlbumService {
         country: {
           select: {
             id: true,
+            name: true,
           },
         },
       },

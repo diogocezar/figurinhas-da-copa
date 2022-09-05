@@ -1,1 +1,14 @@
-<h1>Album</h1>
+<section id="countries">
+  <div *ngFor="let plotSticker of plotStickers">
+    <div class="country">
+      <h3>{{ plotSticker.country.name }}</h3>
+      <div class="stickers">
+        <div *ngFor="let sticker of plotSticker.stickers">
+          <div class="sticker" [ngClass]="{ active: sticker.quantity > 0 }">
+            <p>{{ sticker.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

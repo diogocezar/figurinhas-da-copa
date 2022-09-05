@@ -20,7 +20,6 @@ export class AlbumService {
   }
 
   mountAlbum(): Observable<Sticker[]> {
-    console.log(this.headers);
     return this.httpClient.get<Sticker[]>(`${this.baseURL}/album/mount`, {
       headers: this.headers,
     });
