@@ -11,28 +11,17 @@ import { environment } from '../environments/environment';
 })
 export class AlbumService {
   private baseURL = environment.apiBaseUrl;
-  private headers: HttpHeaders;
 
-  constructor(private httpClient: HttpClient, private login: LoginService) {
-    this.headers = new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*')
-      .set('Authorization', `Bearer ${login.getAccessToken()}`);
-  }
+  constructor(private httpClient: HttpClient) {}
 
   mountAlbum(): Observable<Sticker[]> {
-    return this.httpClient.get<Sticker[]>(`${this.baseURL}/album/mount`, {
-      headers: this.headers,
-    });
+    return this.httpClient.get<Sticker[]>(`${this.baseURL}/album/mount`);
   }
 
   updateAlbum(update: UpdateSticker) {
     return this.httpClient.patch<UpdateSticker>(
       `${this.baseURL}/album`,
-      update,
-      {
-        headers: this.headers,
-      }
+      update
     );
   }
 }

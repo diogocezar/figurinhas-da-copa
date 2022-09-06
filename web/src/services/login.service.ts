@@ -20,7 +20,7 @@ export class LoginService {
     return localStorage.getItem('accessToken');
   }
 
-  requestLogin(username: string, password: string): Observable<LoginOutput> {
+  login(username: string, password: string): Observable<LoginOutput> {
     return this.httpClient.post<LoginOutput>(`${this.baseURL}/auth/login`, {
       username,
       password,

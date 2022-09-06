@@ -11,10 +11,11 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   error: string;
+
   constructor(private loginService: LoginService, private router: Router) {}
 
   login() {
-    this.loginService.requestLogin(this.username, this.password).subscribe({
+    this.loginService.login(this.username, this.password).subscribe({
       next: (response) => {
         this.loginService.setLocalStorage(response.access_token);
         this.router.navigate(['/album']);

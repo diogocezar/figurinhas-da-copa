@@ -1,0 +1,49 @@
+<h1>Faça o Seu Cadastro</h1>
+<section class="container">
+  <form class="form" (ngSubmit)="create()">
+    <div class="form-field">
+      <label class="form-field__label" for="name">Nome</label>
+      <input
+        class="form-field__input"
+        type="text"
+        placeholder="Nome"
+        name="name"
+        [(ngModel)]="name"
+      />
+    </div>
+    <div class="form-field">
+      <label class="form-field__label" for="username">Email</label>
+      <input
+        class="form-field__input"
+        type="email"
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="email"
+      />
+    </div>
+    <div class="form-field">
+      <label class="form-field__label" for="password">Senha</label>
+      <input
+        class="form-field__input"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+      />
+    </div>
+    <div class="form-field">
+      <label class="form-field__label" for="passwordCheck"
+        >Configrmação de Senha</label
+      >
+      <input
+        class="form-field__input"
+        type="password"
+        name="passwordCheck"
+        [(ngModel)]="passwordCheck"
+      />
+    </div>
+    <div class="button-container">
+      <button class="button" type="submit">Entrar</button>
+    </div>
+    <div class="error">{{ error }}</div>
+  </form>
+</section>
