@@ -1,3 +1,4 @@
+<button (click)="save()">Salvar</button>
 <h2>FWC</h2>
 <section id="countries">
   <div *ngFor="let plotStickerFwc of plotStickersFwc">
@@ -14,8 +15,16 @@
           >
             <p>{{ sticker.name }}</p>
             <p>{{ sticker.quantity }}</p>
-            <button (click)="add(sticker.id, sticker.quantity)">+</button>
-            <button (click)="sub(sticker.id, sticker.quantity)">-</button>
+            <button
+              (click)="handleChange(sticker.id, sticker.quantity, 'fwc', 'add')"
+            >
+              +
+            </button>
+            <button
+              (click)="handleChange(sticker.id, sticker.quantity, 'fwc', 'sub')"
+            >
+              -
+            </button>
           </div>
         </div>
       </div>
@@ -39,8 +48,20 @@
           >
             <p>{{ sticker.name }}</p>
             <p>{{ sticker.quantity }}</p>
-            <button (click)="add(sticker.id, sticker.quantity)">+</button>
-            <button (click)="sub(sticker.id, sticker.quantity)">-</button>
+            <button
+              (click)="
+                handleChange(sticker.id, sticker.quantity, 'countries', 'add')
+              "
+            >
+              +
+            </button>
+            <button
+              (click)="
+                handleChange(sticker.id, sticker.quantity, 'countries', 'sub')
+              "
+            >
+              -
+            </button>
           </div>
         </div>
       </div>
@@ -64,8 +85,16 @@
           >
             <p>{{ sticker.name }}</p>
             <p>{{ sticker.quantity }}</p>
-            <button (click)="add(sticker.id, sticker.quantity)">+</button>
-            <button (click)="sub(sticker.id, sticker.quantity)">-</button>
+            <button
+              (click)="handleChange(sticker.id, sticker.quantity, 'coc', 'add')"
+            >
+              +
+            </button>
+            <button
+              (click)="handleChange(sticker.id, sticker.quantity, 'coc', 'sub')"
+            >
+              -
+            </button>
           </div>
         </div>
       </div>

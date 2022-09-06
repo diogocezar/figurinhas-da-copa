@@ -26,8 +26,8 @@ export class AlbumService {
     });
   }
 
-  updateAlbum(update: UpdateSticker[]) {
-    return this.httpClient.patch<UpdateSticker[]>(
+  updateAlbum(update: UpdateSticker) {
+    return this.httpClient.patch<UpdateSticker>(
       `${this.baseURL}/album`,
       update,
       {

@@ -20,14 +20,9 @@ export const updatePlotStickers = (
         ...plotSticker,
         stickers: plotSticker.stickers.map((sticker) => {
           if (sticker.id === id) {
-            let newQuantity;
-            if (operation === 'add') newQuantity = quantity + 1;
-            if (operation === 'sub') newQuantity = quantity - 1;
-            if (newQuantity < 0) newQuantity = 0;
-            if (newQuantity > 5) newQuantity = 5;
             return {
               ...sticker,
-              quantity: newQuantity,
+              quantity,
             };
           }
           return sticker;

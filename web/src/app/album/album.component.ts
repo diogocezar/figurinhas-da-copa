@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import CountryId from './enum/CountryId';
+import CountryType from 'src/app/album/enum/CountryType';
 import { AlbumService } from 'src/services/album.service';
 import { Sticker } from 'src/app/album/types/Sticker';
 import Country from 'src/app/album/types/Country';
 import PlotSticker from 'src/app/album/types/PlotSticker';
 import UpdateSticker from 'src/app/album/types/UpdateSticker';
 import { updatePlotStickers } from 'src/app/album/helpers/updatePlotStickers';
+import { filterByType } from 'src/app/album/helpers/filter';
+import { fill } from 'src/app/album/helpers/fill';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-album',
@@ -19,8 +23,8 @@ export class AlbumComponent implements OnInit {
   stickerCountries: Sticker[] = [];
 
   countries: Country[] = [];
-  fwc: Country[] = [];
-  coc: Country[] = [];
+  countriesFwc: Country[] = [];
+  countriesCoc: Country[] = [];
 
   plotStickersFwc: PlotSticker[] = [];
   plotStickersCountries: PlotSticker[] = [];
@@ -28,64 +32,46 @@ export class AlbumComponent implements OnInit {
 
   updateStickers: UpdateSticker;
 
-  constructor(private albumService: AlbumService) {
+  constructor(private albumService: AlbumService, private router: Router) {
     this.updateStickers = {
       stickerIds: [],
     };
   }
 
-  filterByFwc() {
-    return this.stickers.filter(
-      (sticker) => sticker.country.id === CountryId.FWC
-    );
-  }
+  ngOnInit(): void {
+    this.albumService.mountAlbum().subscribe({
+      next: (response) => {
+        this.stickers = response;
 
-  filterByCoc() {
-    return this.stickers.filter(
-      (sticker) => sticker.country.id === CountryId.COC
-    );
-  }
+        this.stickersFwc = filterByType(this.stickers, CountryType.FWC);
+        this.stickerCountries = filterByType(
+          this.stickers,
+          CountryType.COUNTRIES
+        );
+        this.stickersCoc = filterByType(this.stickers, CountryType.COC);
 
-  fillCountries() {
-    this.stickers.forEach((sticker) => {
-      if (
-        !this.countries.find((country) => country.id === sticker.country.id) &&
-        sticker.country.id !== CountryId.FWC &&
-        sticker.country.id !== CountryId.COC
-      ) {
-        this.countries.push(sticker.country);
-      }
+        this.countriesFwc = fill(
+          this.stickers,
+          this.countries,
+          CountryType.FWC
+        );
+        this.countries = fill(
+          this.stickers,
+          this.countries,
+          CountryType.COUNTRIES
+        );
+        this.countriesCoc = fill(
+          this.stickers,
+          this.countries,
+          CountryType.COC
+        );
+
+        this.fillPlotStickers();
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
-  }
-
-  fillFwc() {
-    this.stickers.forEach((sticker) => {
-      if (
-        !this.countries.find((country) => country.id === sticker.country.id) &&
-        sticker.country.id === CountryId.FWC
-      ) {
-        this.fwc.push(sticker.country);
-      }
-    });
-  }
-
-  fillCoc() {
-    this.stickers.forEach((sticker) => {
-      if (
-        !this.countries.find((country) => country.id === sticker.country.id) &&
-        sticker.country.id === CountryId.COC
-      ) {
-        this.coc.push(sticker.country);
-      }
-    });
-  }
-
-  filterByCountries() {
-    return this.stickers.filter(
-      (sticker) =>
-        sticker.country.id !== CountryId.FWC &&
-        sticker.country.id !== CountryId.COC
-    );
   }
 
   fillPlotStickers() {
@@ -95,6 +81,15 @@ export class AlbumComponent implements OnInit {
         (stickerIn) => CountryId.FWC === stickerIn.country.id
       ),
     };
+
+    const plotStickerCoc: PlotSticker = {
+      country: { id: CountryId.COC, name: 'Coca Cola' },
+      stickers: this.stickersCoc.filter(
+        (stickerIn) => CountryId.COC === stickerIn.country.id
+      ),
+    };
+
+    this.plotStickersCoc.push(plotStickerCoc);
     this.plotStickersFwc.push(plotStickerFwc);
 
     this.countries.forEach((country) => {
@@ -106,24 +101,16 @@ export class AlbumComponent implements OnInit {
       };
       this.plotStickersCountries.push(plotSticker);
     });
-
-    const plotStickerCoc: PlotSticker = {
-      country: { id: CountryId.COC, name: 'Coca Cola' },
-      stickers: this.stickersCoc.filter(
-        (stickerIn) => CountryId.COC === stickerIn.country.id
-      ),
-    };
-    this.plotStickersCoc.push(plotStickerCoc);
   }
 
-  addToUpdateList(id, quantity) {
+  handleUpdateList(id, quantity) {
     const exists = this.updateStickers.stickerIds.find(
       (sticker) => sticker.id === id
     );
     if (!exists) {
       const newSticker: Sticker = {
         id,
-        quantity: quantity + 1,
+        quantity,
       };
       this.updateStickers.stickerIds.push(newSticker);
     } else {
@@ -132,7 +119,7 @@ export class AlbumComponent implements OnInit {
           if (sticker.id === id) {
             return {
               ...sticker,
-              quantity: sticker.quantity + 1,
+              quantity,
             };
           }
           return sticker;
@@ -141,70 +128,46 @@ export class AlbumComponent implements OnInit {
     }
   }
 
-  add(id, quantity) {
-    this.plotStickersFwc = updatePlotStickers(
-      this.plotStickersFwc,
-      id,
-      quantity,
-      'add',
-      'fwc'
-    );
-    this.plotStickersCountries = updatePlotStickers(
-      this.plotStickersCountries,
-      id,
-      quantity,
-      'add',
-      'countries'
-    );
-    this.plotStickersCoc = updatePlotStickers(
-      this.plotStickersCoc,
-      id,
-      quantity,
-      'add',
-      'coc'
-    );
+  handleChange(id, quantity, type, operation) {
+    let newQuantity;
+    if (operation === 'add') newQuantity = quantity + 1;
+    if (operation === 'sub') newQuantity = quantity - 1;
+    if (newQuantity < 0) newQuantity = 0;
+    if (newQuantity > 5) newQuantity = 5;
+    if (type === 'fwc') {
+      this.plotStickersFwc = updatePlotStickers(
+        this.plotStickersFwc,
+        id,
+        newQuantity,
+        'add',
+        'fwc'
+      );
+    }
+    if (type === 'countries') {
+      this.plotStickersCountries = updatePlotStickers(
+        this.plotStickersCountries,
+        id,
+        newQuantity,
+        'add',
+        'countries'
+      );
+    }
+    if (type === 'coc') {
+      this.plotStickersCoc = updatePlotStickers(
+        this.plotStickersCoc,
+        id,
+        newQuantity,
+        'add',
+        'coc'
+      );
+    }
+    this.handleUpdateList(id, newQuantity);
   }
 
-  sub(id, quantity) {
-    this.plotStickersFwc = updatePlotStickers(
-      this.plotStickersFwc,
-      id,
-      quantity,
-      'sub',
-      'fwc'
-    );
-    this.plotStickersCountries = updatePlotStickers(
-      this.plotStickersCountries,
-      id,
-      quantity,
-      'sub',
-      'countries'
-    );
-    this.plotStickersCoc = updatePlotStickers(
-      this.plotStickersCoc,
-      id,
-      quantity,
-      'sub',
-      'coc'
-    );
-  }
-
-  ngOnInit(): void {
-    this.albumService.mountAlbum().subscribe({
+  save() {
+    this.albumService.updateAlbum(this.updateStickers).subscribe({
       next: (response) => {
-        this.stickers = response;
-
-        this.stickersFwc = this.filterByFwc();
-        this.stickersCoc = this.filterByCoc();
-        this.stickerCountries = this.filterByCountries();
-
-        this.fillFwc();
-        this.fillCoc();
-        this.fillCountries();
-
-        console.log(this.plotStickersCoc);
-
-        this.fillPlotStickers();
+        this.router.navigate(['/album']);
       },
       error: (error) => {
         console.log(error);
