@@ -13,5 +13,6 @@ O que falta?
 - Criar sistema que copia as figurinhas exibidas em tela; [OK]
 - Criar porcentagem de país completo;
 - Criar porcentagem de album competo;
+- Criar painel de quantidades de figurinhas;
 - Criar um layout para o Front-end;
 - Realizar o deploy da aplicação;

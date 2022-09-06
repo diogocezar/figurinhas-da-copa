@@ -161,7 +161,7 @@ export default [
   },
   {
     name: 'Koreia Republic',
-    initials: 'COR',
+    initials: 'KOR',
     pages: [72],
   },
   {
