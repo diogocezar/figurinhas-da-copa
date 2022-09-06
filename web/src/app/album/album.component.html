@@ -1,6 +1,11 @@
 <button (click)="save()">Salvar</button>
+<button (click)="filterRepeated()">Filtrar Repetidas</button>
+<button (click)="filterMissing()">Filtrar Faltantes</button>
+<button (click)="filterUnique()">Filtrar Únicas</button>
+<button (click)="fillPlotStickers()">Remover Filtros</button>
+<button (click)="copy()">Copiar Figurinhas</button>
 <h2>FWC</h2>
-<section id="countries">
+<section id="fwc">
   <div *ngFor="let plotStickerFwc of plotStickersFwc">
     <div class="country">
       <h3>{{ plotStickerFwc.country.name }}</h3>
@@ -70,7 +75,7 @@
 </section>
 
 <h2>Coca Cola</h2>
-<section id="countries">
+<section id="coc">
   <div *ngFor="let plotStickerCoc of plotStickersCoc">
     <div class="country">
       <h3>{{ plotStickerCoc.country.name }}</h3>

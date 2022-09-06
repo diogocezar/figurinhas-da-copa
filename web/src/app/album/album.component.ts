@@ -7,9 +7,16 @@ import Country from 'src/app/album/types/Country';
 import PlotSticker from 'src/app/album/types/PlotSticker';
 import UpdateSticker from 'src/app/album/types/UpdateSticker';
 import { updatePlotStickers } from 'src/app/album/helpers/updatePlotStickers';
-import { filterByType } from 'src/app/album/helpers/filter';
+import {
+  filterByType,
+  filterByRepeated,
+  filterByMissing,
+  filterByUnique,
+} from 'src/app/album/helpers/filter';
+import { generateTextToCopy } from 'src/app/album/helpers/generateTextToCopy';
 import { fill } from 'src/app/album/helpers/fill';
 import { Router } from '@angular/router';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-album',
@@ -32,13 +39,21 @@ export class AlbumComponent implements OnInit {
 
   updateStickers: UpdateSticker;
 
-  constructor(private albumService: AlbumService, private router: Router) {
+  constructor(
+    private albumService: AlbumService,
+    private router: Router,
+    private clipboard: Clipboard
+  ) {
     this.updateStickers = {
       stickerIds: [],
     };
   }
 
   ngOnInit(): void {
+    this.getFromServer();
+  }
+
+  getFromServer() {
     this.albumService.mountAlbum().subscribe({
       next: (response) => {
         this.stickers = response;
@@ -75,6 +90,9 @@ export class AlbumComponent implements OnInit {
   }
 
   fillPlotStickers() {
+    const tempPlotStickersFwc: PlotSticker[] = [];
+    const tempPlotStickersCoc: PlotSticker[] = [];
+    const tempPlotStickersCountries: PlotSticker[] = [];
     const plotStickerFwc: PlotSticker = {
       country: { id: CountryId.FWC, name: 'FIFA World Cup' },
       stickers: this.stickersFwc.filter(
@@ -89,8 +107,8 @@ export class AlbumComponent implements OnInit {
       ),
     };
 
-    this.plotStickersCoc.push(plotStickerCoc);
-    this.plotStickersFwc.push(plotStickerFwc);
+    tempPlotStickersFwc.push(plotStickerFwc);
+    tempPlotStickersCoc.push(plotStickerCoc);
 
     this.countries.forEach((country) => {
       const plotSticker: PlotSticker = {
@@ -99,8 +117,11 @@ export class AlbumComponent implements OnInit {
           (stickerIn) => country.id === stickerIn.country.id
         ),
       };
-      this.plotStickersCountries.push(plotSticker);
+      tempPlotStickersCountries.push(plotSticker);
     });
+    this.plotStickersFwc = tempPlotStickersFwc;
+    this.plotStickersCoc = tempPlotStickersCoc;
+    this.plotStickersCountries = tempPlotStickersCountries;
   }
 
   handleUpdateList(id, quantity) {
@@ -167,11 +188,42 @@ export class AlbumComponent implements OnInit {
   save() {
     this.albumService.updateAlbum(this.updateStickers).subscribe({
       next: (response) => {
-        this.router.navigate(['/album']);
+        this.getFromServer();
+        this.fillPlotStickers();
       },
       error: (error) => {
         console.log(error);
       },
     });
+  }
+
+  copy() {
+    let textToCopy = '';
+    textToCopy += generateTextToCopy(this.plotStickersFwc);
+    textToCopy += generateTextToCopy(this.plotStickersCountries);
+    textToCopy += generateTextToCopy(this.plotStickersCoc);
+    console.log(textToCopy);
+    this.clipboard.copy(textToCopy);
+  }
+
+  filterRepeated() {
+    this.fillPlotStickers();
+    this.plotStickersFwc = filterByRepeated(this.plotStickersFwc);
+    this.plotStickersCountries = filterByRepeated(this.plotStickersCountries);
+    this.plotStickersCoc = filterByRepeated(this.plotStickersCoc);
+  }
+
+  filterMissing() {
+    this.fillPlotStickers();
+    this.plotStickersFwc = filterByMissing(this.plotStickersFwc);
+    this.plotStickersCountries = filterByMissing(this.plotStickersCountries);
+    this.plotStickersCoc = filterByMissing(this.plotStickersCoc);
+  }
+
+  filterUnique() {
+    this.fillPlotStickers();
+    this.plotStickersFwc = filterByUnique(this.plotStickersFwc);
+    this.plotStickersCountries = filterByUnique(this.plotStickersCountries);
+    this.plotStickersCoc = filterByUnique(this.plotStickersCoc);
   }
 }

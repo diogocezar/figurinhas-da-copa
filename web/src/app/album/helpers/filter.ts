@@ -15,3 +15,30 @@ export const filterByType = (stickers, type) => {
     if (condition) return sticker;
   });
 };
+
+export const filterByRepeated = (plotStickers) => {
+  return plotStickers.map((plotStickers) => {
+    const stickers = plotStickers.stickers.filter(
+      (sticker) => sticker.quantity > 1
+    );
+    return { ...plotStickers, stickers };
+  });
+};
+
+export const filterByMissing = (plotStickers) => {
+  return plotStickers.map((plotStickers) => {
+    const stickers = plotStickers.stickers.filter(
+      (sticker) => sticker.quantity === 0
+    );
+    return { ...plotStickers, stickers };
+  });
+};
+
+export const filterByUnique = (plotStickers) => {
+  return plotStickers.map((plotStickers) => {
+    const stickers = plotStickers.stickers.filter(
+      (sticker) => sticker.quantity === 1
+    );
+    return { ...plotStickers, stickers };
+  });
+};
