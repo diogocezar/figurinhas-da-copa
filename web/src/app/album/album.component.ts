@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  PlotSticker,
-  Sticker,
-  UpdateStickers,
-  Country,
-} from 'src/app/album/album.interfaces';
+import CountryId from './enum/CountryId';
 import { AlbumService } from 'src/services/album.service';
+import { Sticker } from 'src/app/album/types/Sticker';
+import Country from 'src/app/album/types/Country';
+import PlotSticker from 'src/app/album/types/PlotSticker';
+import UpdateSticker from 'src/app/album/types/UpdateSticker';
 
 @Component({
   selector: 'app-album',
@@ -19,24 +18,28 @@ export class AlbumComponent implements OnInit {
   countries: Country[] = [];
   stickerCountries: Sticker[] = [];
   plotStickers: PlotSticker[] = [];
-  updateStickers: UpdateStickers[] = [];
+  updateStickers: UpdateSticker[] = [];
 
   constructor(private albumService: AlbumService) {}
 
   filterByFwc() {
-    return this.stickers.filter((sticker) => sticker.country.id === 1);
+    return this.stickers.filter(
+      (sticker) => sticker.country.id === CountryId.FWC
+    );
   }
 
   filterByCoc() {
-    return this.stickers.filter((sticker) => sticker.country.id === 34);
+    return this.stickers.filter(
+      (sticker) => sticker.country.id === CountryId.COC
+    );
   }
 
   fillCountries() {
     this.stickers.forEach((sticker) => {
       if (
         !this.countries.find((country) => country.id === sticker.country.id) &&
-        sticker.country.id !== 1 &&
-        sticker.country.id !== 34
+        sticker.country.id !== CountryId.FWC &&
+        sticker.country.id !== CountryId.COC
       ) {
         this.countries.push(sticker.country);
       }
@@ -70,7 +73,6 @@ export class AlbumComponent implements OnInit {
         this.stickerCountries = this.filterByCountries();
         this.fillCountries();
         this.fillPlotStickers();
-        console.log(this.plotStickers);
       },
       error: (error) => {
         console.log(error);
