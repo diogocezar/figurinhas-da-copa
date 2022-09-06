@@ -2,12 +2,12 @@ import Country from 'src/app/album/types/Country';
 
 type BaseSticker = {
   id: number;
-  name: string;
+  name?: string;
 };
 
 type Sticker = BaseSticker & {
-  number: number;
-  country: Country;
+  number?: number;
+  country?: Country;
   quantity: number;
 };
 

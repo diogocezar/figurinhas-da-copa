@@ -5,6 +5,7 @@ import { Sticker } from 'src/app/album/types/Sticker';
 import Country from 'src/app/album/types/Country';
 import PlotSticker from 'src/app/album/types/PlotSticker';
 import UpdateSticker from 'src/app/album/types/UpdateSticker';
+import { updatePlotStickers } from 'src/app/album/helpers/updatePlotStickers';
 
 @Component({
   selector: 'app-album',
@@ -15,18 +16,23 @@ export class AlbumComponent implements OnInit {
   stickers: Sticker[] = [];
   stickersFwc: Sticker[] = [];
   stickersCoc: Sticker[] = [];
+  stickerCountries: Sticker[] = [];
+
   countries: Country[] = [];
   fwc: Country[] = [];
   coc: Country[] = [];
-  stickerCountries: Sticker[] = [];
 
   plotStickersFwc: PlotSticker[] = [];
   plotStickersCountries: PlotSticker[] = [];
   plotStickersCoc: PlotSticker[] = [];
 
-  updateStickers: UpdateSticker[] = [];
+  updateStickers: UpdateSticker;
 
-  constructor(private albumService: AlbumService) {}
+  constructor(private albumService: AlbumService) {
+    this.updateStickers = {
+      stickerIds: [],
+    };
+  }
 
   filterByFwc() {
     return this.stickers.filter(
@@ -108,6 +114,79 @@ export class AlbumComponent implements OnInit {
       ),
     };
     this.plotStickersCoc.push(plotStickerCoc);
+  }
+
+  addToUpdateList(id, quantity) {
+    const exists = this.updateStickers.stickerIds.find(
+      (sticker) => sticker.id === id
+    );
+    if (!exists) {
+      const newSticker: Sticker = {
+        id,
+        quantity: quantity + 1,
+      };
+      this.updateStickers.stickerIds.push(newSticker);
+    } else {
+      this.updateStickers.stickerIds = this.updateStickers.stickerIds.map(
+        (sticker) => {
+          if (sticker.id === id) {
+            return {
+              ...sticker,
+              quantity: sticker.quantity + 1,
+            };
+          }
+          return sticker;
+        }
+      );
+    }
+  }
+
+  add(id, quantity) {
+    this.plotStickersFwc = updatePlotStickers(
+      this.plotStickersFwc,
+      id,
+      quantity,
+      'add',
+      'fwc'
+    );
+    this.plotStickersCountries = updatePlotStickers(
+      this.plotStickersCountries,
+      id,
+      quantity,
+      'add',
+      'countries'
+    );
+    this.plotStickersCoc = updatePlotStickers(
+      this.plotStickersCoc,
+      id,
+      quantity,
+      'add',
+      'coc'
+    );
+  }
+
+  sub(id, quantity) {
+    this.plotStickersFwc = updatePlotStickers(
+      this.plotStickersFwc,
+      id,
+      quantity,
+      'sub',
+      'fwc'
+    );
+    this.plotStickersCountries = updatePlotStickers(
+      this.plotStickersCountries,
+      id,
+      quantity,
+      'sub',
+      'countries'
+    );
+    this.plotStickersCoc = updatePlotStickers(
+      this.plotStickersCoc,
+      id,
+      quantity,
+      'sub',
+      'coc'
+    );
   }
 
   ngOnInit(): void {

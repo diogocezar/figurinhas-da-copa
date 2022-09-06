@@ -1,7 +1,7 @@
-import { BaseSticker } from 'src/app/album/types/Sticker';
+import { Sticker } from 'src/app/album/types/Sticker';
 
 type UpdateSticker = {
-  stickerIds: BaseSticker[];
+  stickerIds: Sticker[];
 };
 
 export default UpdateSticker;
