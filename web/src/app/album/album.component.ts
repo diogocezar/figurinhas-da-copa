@@ -16,8 +16,14 @@ export class AlbumComponent implements OnInit {
   stickersFwc: Sticker[] = [];
   stickersCoc: Sticker[] = [];
   countries: Country[] = [];
+  fwc: Country[] = [];
+  coc: Country[] = [];
   stickerCountries: Sticker[] = [];
-  plotStickers: PlotSticker[] = [];
+
+  plotStickersFwc: PlotSticker[] = [];
+  plotStickersCountries: PlotSticker[] = [];
+  plotStickersCoc: PlotSticker[] = [];
+
   updateStickers: UpdateSticker[] = [];
 
   constructor(private albumService: AlbumService) {}
@@ -46,13 +52,45 @@ export class AlbumComponent implements OnInit {
     });
   }
 
+  fillFwc() {
+    this.stickers.forEach((sticker) => {
+      if (
+        !this.countries.find((country) => country.id === sticker.country.id) &&
+        sticker.country.id === CountryId.FWC
+      ) {
+        this.fwc.push(sticker.country);
+      }
+    });
+  }
+
+  fillCoc() {
+    this.stickers.forEach((sticker) => {
+      if (
+        !this.countries.find((country) => country.id === sticker.country.id) &&
+        sticker.country.id === CountryId.COC
+      ) {
+        this.coc.push(sticker.country);
+      }
+    });
+  }
+
   filterByCountries() {
     return this.stickers.filter(
-      (sticker) => sticker.country.id !== 1 && sticker.country.id !== 34
+      (sticker) =>
+        sticker.country.id !== CountryId.FWC &&
+        sticker.country.id !== CountryId.COC
     );
   }
 
   fillPlotStickers() {
+    const plotStickerFwc: PlotSticker = {
+      country: { id: CountryId.FWC, name: 'FIFA World Cup' },
+      stickers: this.stickersFwc.filter(
+        (stickerIn) => CountryId.FWC === stickerIn.country.id
+      ),
+    };
+    this.plotStickersFwc.push(plotStickerFwc);
+
     this.countries.forEach((country) => {
       const plotSticker: PlotSticker = {
         country: country,
@@ -60,18 +98,33 @@ export class AlbumComponent implements OnInit {
           (stickerIn) => country.id === stickerIn.country.id
         ),
       };
-      this.plotStickers.push(plotSticker);
+      this.plotStickersCountries.push(plotSticker);
     });
+
+    const plotStickerCoc: PlotSticker = {
+      country: { id: CountryId.COC, name: 'Coca Cola' },
+      stickers: this.stickersCoc.filter(
+        (stickerIn) => CountryId.COC === stickerIn.country.id
+      ),
+    };
+    this.plotStickersCoc.push(plotStickerCoc);
   }
 
   ngOnInit(): void {
     this.albumService.mountAlbum().subscribe({
       next: (response) => {
         this.stickers = response;
+
         this.stickersFwc = this.filterByFwc();
         this.stickersCoc = this.filterByCoc();
         this.stickerCountries = this.filterByCountries();
+
+        this.fillFwc();
+        this.fillCoc();
         this.fillCountries();
+
+        console.log(this.plotStickersCoc);
+
         this.fillPlotStickers();
       },
       error: (error) => {

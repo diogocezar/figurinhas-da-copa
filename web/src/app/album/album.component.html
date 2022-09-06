@@ -1,10 +1,61 @@
+<h2>FWC</h2>
 <section id="countries">
-  <div *ngFor="let plotSticker of plotStickers">
+  <div *ngFor="let plotStickerFwc of plotStickersFwc">
     <div class="country">
-      <h3>{{ plotSticker.country.name }}</h3>
+      <h3>{{ plotStickerFwc.country.name }}</h3>
       <div class="stickers">
-        <div *ngFor="let sticker of plotSticker.stickers">
-          <div class="sticker" [ngClass]="{ active: sticker.quantity > 0 }">
+        <div *ngFor="let sticker of plotStickerFwc.stickers">
+          <div
+            class="sticker"
+            [ngClass]="{
+              active: sticker.quantity > 0,
+              hard: sticker.quantity > 1
+            }"
+          >
+            <p>{{ sticker.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<h2>Countries</h2>
+<section id="countries">
+  <div *ngFor="let plotStickerCountry of plotStickersCountries">
+    <div class="country">
+      <h3>{{ plotStickerCountry.country.name }}</h3>
+      <div class="stickers">
+        <div *ngFor="let sticker of plotStickerCountry.stickers">
+          <div
+            class="sticker"
+            [ngClass]="{
+              active: sticker.quantity > 0,
+              hard: sticker.quantity > 1
+            }"
+          >
+            <p>{{ sticker.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<h2>Coca Cola</h2>
+<section id="countries">
+  <div *ngFor="let plotStickerCoc of plotStickersCoc">
+    <div class="country">
+      <h3>{{ plotStickerCoc.country.name }}</h3>
+      <div class="stickers">
+        <div *ngFor="let sticker of plotStickerCoc.stickers">
+          <div
+            class="sticker"
+            [ngClass]="{
+              active: sticker.quantity > 0,
+              hard: sticker.quantity > 1
+            }"
+          >
             <p>{{ sticker.name }}</p>
           </div>
         </div>

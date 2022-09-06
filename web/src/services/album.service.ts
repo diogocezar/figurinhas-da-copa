@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Sticker, UpdateStickers } from 'src/app/album/album.interfaces';
+import { Sticker } from 'src/app/album/types/Sticker';
+import UpdateSticker from 'src/app/album/types/UpdateSticker';
 import { LoginService } from 'src/services/login.service';
 import { environment } from '../environments/environment';
 
@@ -25,8 +26,8 @@ export class AlbumService {
     });
   }
 
-  updateAlbum(update: UpdateStickers[]) {
-    return this.httpClient.patch<UpdateStickers[]>(
+  updateAlbum(update: UpdateSticker[]) {
+    return this.httpClient.patch<UpdateSticker[]>(
       `${this.baseURL}/album`,
       update,
       {

@@ -5,7 +5,7 @@ type BaseSticker = {
   name: string;
 };
 
-type Sticker = BaseStickerType & {
+type Sticker = BaseSticker & {
   number: number;
   country: Country;
   quantity: number;
