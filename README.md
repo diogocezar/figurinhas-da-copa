@@ -14,5 +14,8 @@ O que falta?
 - Criar porcentagem de país completo; [OK]
 - Criar porcentagem de album competo; [OK]
 - Criar painel de quantidades de figurinhas; [OK]
+- Incluir mensagem de feedback em Toaster; [OK]
+- Melhorar tratativa de erros no cadastro. Mostrando cada campo que deve ser ajustado;
+- Melhorar tratativa de erros no login. Mostrando cada campo que deve ser ajustado;
 - Criar um layout para o Front-end;
 - Realizar o deploy da aplicação;

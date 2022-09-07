@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AlbumComponent } from './album/album.component';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { JwtInterceptor } from 'src/app/helpers/jwt.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,15 @@ import { JwtInterceptor } from 'src/app/helpers/jwt.interceptor';
     LogoutComponent,
     MenuComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+  ],
   providers: [
     AuthGuard,
     {
@@ -30,6 +40,7 @@ import { JwtInterceptor } from 'src/app/helpers/jwt.interceptor';
       useClass: JwtInterceptor,
       multi: true,
     },
+    FormBuilder,
   ],
   bootstrap: [AppComponent],
 })

@@ -22,6 +22,7 @@ import {
   getRepeated,
   getTotal,
 } from 'src/app/album/helpers/counters';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-album',
@@ -51,7 +52,8 @@ export class AlbumComponent implements OnInit {
 
   constructor(
     private albumService: AlbumService,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private toastrService: ToastrService
   ) {
     this.updateStickers = {
       stickerIds: [],
@@ -213,9 +215,10 @@ export class AlbumComponent implements OnInit {
     this.albumService.updateAlbum(this.updateStickers).subscribe({
       next: (response) => {
         this.getFromServer();
-        this.fillPlotStickers();
+        this.toastrService.success('As alterações foram salvas com sucesso!');
       },
       error: (error) => {
+        this.toastrService.error('Houve um erro ao salvar as alterações!');
         console.log(error);
       },
     });
@@ -226,8 +229,10 @@ export class AlbumComponent implements OnInit {
     textToCopy += generateTextToCopy(this.plotStickersFwc);
     textToCopy += generateTextToCopy(this.plotStickersCountries);
     textToCopy += generateTextToCopy(this.plotStickersCoc);
-    console.log(textToCopy);
     this.clipboard.copy(textToCopy);
+    this.toastrService.success(
+      'As figurinhas foram copiadas para a área de transferência.'
+    );
   }
 
   filterRepeated() {
@@ -235,6 +240,7 @@ export class AlbumComponent implements OnInit {
     this.plotStickersFwc = filterByRepeated(this.plotStickersFwc);
     this.plotStickersCountries = filterByRepeated(this.plotStickersCountries);
     this.plotStickersCoc = filterByRepeated(this.plotStickersCoc);
+    this.toastrService.info('Mostrando apenas as figurinhas repetidas.');
   }
 
   filterMissing() {
@@ -242,6 +248,7 @@ export class AlbumComponent implements OnInit {
     this.plotStickersFwc = filterByMissing(this.plotStickersFwc);
     this.plotStickersCountries = filterByMissing(this.plotStickersCountries);
     this.plotStickersCoc = filterByMissing(this.plotStickersCoc);
+    this.toastrService.info('Mostrando apenas as figurinhas faltantes.');
   }
 
   filterUnique() {
@@ -249,5 +256,6 @@ export class AlbumComponent implements OnInit {
     this.plotStickersFwc = filterByUnique(this.plotStickersFwc);
     this.plotStickersCountries = filterByUnique(this.plotStickersCountries);
     this.plotStickersCoc = filterByUnique(this.plotStickersCoc);
+    this.toastrService.info('Mostrando apenas as figurinhas únicas.');
   }
 }

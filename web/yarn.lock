@@ -123,7 +123,7 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
-"@angular/animations@^14.0.0":
+"@angular/animations@^14.2.0":
   version "14.2.0"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-14.2.0.tgz#9ad9cef59521516ad7ab9d3855f138eab71be354"
   integrity sha512-T54F5NvX0XMj6L7hdqYYORFjY6EckOWaK96bF9QqJLKwIRViCEGR5YzaHGhQaAipvUJ+kEwN+bnRBJWOaNbmUw==
@@ -4332,6 +4332,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+ngx-toastr@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-15.0.0.tgz#7d9d664a264b8b39d1bf762bb0a124bde5be8f01"
+  integrity sha512-dseyONSYcbm+8hQUCzzyP6CnHGa8WAOGJN7dzGqgBV4sHCDiv5eZ4x/3uo7Fov2OR0O5T47keP7ND3z7tufXeg==
+  dependencies:
+    tslib "^2.3.0"
 
 nice-napi@^1.0.2:
   version "1.0.2"

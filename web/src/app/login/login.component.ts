@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/services/login.service';
 
 @Component({
@@ -10,9 +11,12 @@ import { LoginService } from 'src/services/login.service';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
-  error: string;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private toastrService: ToastrService
+  ) {}
 
   login() {
     this.loginService.login(this.username, this.password).subscribe({
@@ -21,8 +25,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/album']);
       },
       error: (error) => {
-        console.log(error);
-        this.error = 'Não foi possível realizar o login.';
+        this.toastrService.error('Não foi possível realizar o login.');
       },
     });
   }
