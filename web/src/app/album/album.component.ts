@@ -15,8 +15,13 @@ import {
 } from 'src/app/album/helpers/filter';
 import { generateTextToCopy } from 'src/app/album/helpers/generateTextToCopy';
 import { fill } from 'src/app/album/helpers/fill';
-import { Router } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
+import {
+  getCompleted,
+  getCompletedPercentage,
+  getRepeated,
+  getTotal,
+} from 'src/app/album/helpers/counters';
 
 @Component({
   selector: 'app-album',
@@ -39,9 +44,13 @@ export class AlbumComponent implements OnInit {
 
   updateStickers: UpdateSticker;
 
+  albumPercentage: number;
+  totalStickers: number;
+  completedStickers: number;
+  repeatedStickers: number;
+
   constructor(
     private albumService: AlbumService,
-    private router: Router,
     private clipboard: Clipboard
   ) {
     this.updateStickers = {
@@ -93,35 +102,50 @@ export class AlbumComponent implements OnInit {
     const tempPlotStickersFwc: PlotSticker[] = [];
     const tempPlotStickersCoc: PlotSticker[] = [];
     const tempPlotStickersCountries: PlotSticker[] = [];
+    const stickersFwcFiltred = this.stickersFwc.filter(
+      (stickerIn) => CountryId.FWC === stickerIn.country.id
+    );
+    const stickersCocFiltred = this.stickersCoc.filter(
+      (stickerIn) => CountryId.COC === stickerIn.country.id
+    );
     const plotStickerFwc: PlotSticker = {
       country: { id: CountryId.FWC, name: 'FIFA World Cup' },
-      stickers: this.stickersFwc.filter(
-        (stickerIn) => CountryId.FWC === stickerIn.country.id
-      ),
+      percentage: getCompletedPercentage(stickersFwcFiltred),
+      stickers: stickersFwcFiltred,
     };
 
     const plotStickerCoc: PlotSticker = {
       country: { id: CountryId.COC, name: 'Coca Cola' },
-      stickers: this.stickersCoc.filter(
-        (stickerIn) => CountryId.COC === stickerIn.country.id
-      ),
+      percentage: getCompletedPercentage(stickersCocFiltred),
+      stickers: stickersCocFiltred,
     };
 
     tempPlotStickersFwc.push(plotStickerFwc);
     tempPlotStickersCoc.push(plotStickerCoc);
 
     this.countries.forEach((country) => {
+      const stickersFiltred = this.stickerCountries.filter(
+        (stickerIn) => country.id === stickerIn.country.id
+      );
       const plotSticker: PlotSticker = {
         country: country,
-        stickers: this.stickerCountries.filter(
-          (stickerIn) => country.id === stickerIn.country.id
-        ),
+        percentage: getCompletedPercentage(stickersFiltred),
+        stickers: stickersFiltred,
       };
       tempPlotStickersCountries.push(plotSticker);
     });
     this.plotStickersFwc = tempPlotStickersFwc;
     this.plotStickersCoc = tempPlotStickersCoc;
     this.plotStickersCountries = tempPlotStickersCountries;
+
+    this.fillStats();
+  }
+
+  fillStats() {
+    this.albumPercentage = getCompletedPercentage(this.stickers);
+    this.completedStickers = getCompleted(this.stickers);
+    this.repeatedStickers = getRepeated(this.stickers);
+    this.totalStickers = getTotal(this.stickers);
   }
 
   handleUpdateList(id, quantity) {

@@ -3,6 +3,7 @@ import { Sticker } from 'src/app/album/types/Sticker';
 
 interface PlotSticker {
   country: Country;
+  percentage?: number;
   stickers: Sticker[];
 }
 

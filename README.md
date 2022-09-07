@@ -11,8 +11,8 @@ O que falta?
 - Criar filtro de figurinhas faltantes; [OK]
 - Criar filtro de figurinhas únicas; [OK]
 - Criar sistema que copia as figurinhas exibidas em tela; [OK]
-- Criar porcentagem de país completo;
-- Criar porcentagem de album competo;
-- Criar painel de quantidades de figurinhas;
+- Criar porcentagem de país completo; [OK]
+- Criar porcentagem de album competo; [OK]
+- Criar painel de quantidades de figurinhas; [OK]
 - Criar um layout para o Front-end;
 - Realizar o deploy da aplicação;

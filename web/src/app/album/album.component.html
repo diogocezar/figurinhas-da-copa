@@ -4,11 +4,18 @@
 <button (click)="filterUnique()">Filtrar Únicas</button>
 <button (click)="fillPlotStickers()">Remover Filtros</button>
 <button (click)="copy()">Copiar Figurinhas</button>
+<h2>Album completo</h2>
+<h3>Porcentagem do album completo: {{ albumPercentage }}%</h3>
+<h3>Quantidade total de Figurinhas: {{ totalStickers }}</h3>
+<h3>Quantidade de Figurinhas Preenchidas: {{ completedStickers }}</h3>
+<h3>Quantidade de Figurinhas Repetidas: {{ repeatedStickers }}</h3>
+
 <h2>FWC</h2>
 <section id="fwc">
   <div *ngFor="let plotStickerFwc of plotStickersFwc">
     <div class="country">
       <h3>{{ plotStickerFwc.country.name }}</h3>
+      <h4>Porcentagem: {{ plotStickerFwc.percentage }}%</h4>
       <div class="stickers">
         <div *ngFor="let sticker of plotStickerFwc.stickers">
           <div
@@ -42,6 +49,7 @@
   <div *ngFor="let plotStickerCountry of plotStickersCountries">
     <div class="country">
       <h3>{{ plotStickerCountry.country.name }}</h3>
+      <h4>Porcentagem: {{ plotStickerCountry.percentage }}%</h4>
       <div class="stickers">
         <div *ngFor="let sticker of plotStickerCountry.stickers">
           <div
@@ -79,6 +87,7 @@
   <div *ngFor="let plotStickerCoc of plotStickersCoc">
     <div class="country">
       <h3>{{ plotStickerCoc.country.name }}</h3>
+      <h4>Porcentagem: {{ plotStickerCoc.percentage }}%</h4>
       <div class="stickers">
         <div *ngFor="let sticker of plotStickerCoc.stickers">
           <div
