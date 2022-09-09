@@ -1,5 +1,5 @@
 <section class="container">
-  <form class="form" (ngSubmit)="login()">
+  <form class="form" (ngSubmit)="login()" [formGroup]="form">
     <h2 class="form__title">Login</h2>
     <div class="form-field">
       <label class="form-field__label" for="username">Email</label>
@@ -8,7 +8,7 @@
         type="email"
         placeholder="Email"
         name="username"
-        [(ngModel)]="username"
+        formControlName="username"
       />
     </div>
     <div class="form-field">
@@ -17,8 +17,11 @@
         class="form-field__input"
         type="password"
         name="password"
-        [(ngModel)]="password"
+        formControlName="password"
       />
+    </div>
+    <div *ngFor="let error of errors">
+      <p class="alert">{{ error }}</p>
     </div>
     <div class="button-container">
       <button class="button" type="submit">Entrar</button>

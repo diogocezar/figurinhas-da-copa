@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SigninComponent implements OnInit {
   form: FormGroup;
+  errors: string[] = [];
 
   constructor(
     private signInService: SignInService,
@@ -20,27 +21,34 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  verifyPassword(): boolean {
-    if (
-      this.form.get('password').value !== this.form.get('passwordCheck').value
-    ) {
-      this.toastrService.error('As senhas não conferem.');
-      return false;
-    }
-    return true;
-  }
-
   isFormValid(): boolean {
     if (!this.form.valid) {
-      this.toastrService.error('O formilário não está válido.');
-      console.log(this.form);
+      this.errors = [];
+      if (this.form.controls.name.errors?.required)
+        this.errors.push('O nome é obrigatório.');
+      if (this.form.controls.name.errors?.minlength)
+        this.errors.push('O nome deve ter no mínimo 3 caracteres.');
+      if (this.form.controls.email.errors?.required)
+        this.errors.push('O email é obrigatório.');
+      if (this.form.controls.email.errors?.email)
+        this.errors.push('O email é inválido.');
+      if (this.form.controls.password.errors?.required)
+        this.errors.push('A senha é obrigatória.');
+      if (this.form.controls.password.errors?.minlength)
+        this.errors.push('A senha deve ter no mínimo 6 caracteres.');
+      if (this.form.controls.passwordCheck.errors?.required)
+        this.errors.push('A confirmação de senha é obrigatória.');
+      if (
+        this.form.get('password').value !== this.form.get('passwordCheck').value
+      )
+        this.errors.push('As senhas não conferem.');
       return false;
     }
     return true;
   }
 
   create() {
-    if (!this.verifyPassword()) return;
+    console.log(this.form);
     if (!this.isFormValid()) return;
     const user: UserCreate = {
       name: this.form.get('name').value,

@@ -8,7 +8,7 @@
         type="text"
         placeholder="Nome"
         name="name"
-        ormControlName="name"
+        formControlName="name"
       />
     </div>
     <div class="form-field">
@@ -32,7 +32,7 @@
     </div>
     <div class="form-field">
       <label class="form-field__label" for="passwordCheck"
-        >Configrmação de Senha</label
+        >Confirmação de Senha</label
       >
       <input
         class="form-field__input"
@@ -40,6 +40,9 @@
         name="passwordCheck"
         formControlName="passwordCheck"
       />
+    </div>
+    <div *ngFor="let error of errors">
+      <p class="alert">{{ error }}</p>
     </div>
     <div class="button-container">
       <button class="button" type="submit">Entrar</button>
