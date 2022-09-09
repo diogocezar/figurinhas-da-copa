@@ -16,6 +16,11 @@ O que falta?
 - Criar painel de quantidades de figurinhas; [OK]
 - Incluir mensagem de feedback em Toaster; [OK]
 - Melhorar tratativa de erros no cadastro. Mostrando cada campo que deve ser ajustado; [OK]
-- Melhorar tratativa de erros no login. Mostrando cada campo que deve ser ajustado;
+- Melhorar tratativa de erros no login. Mostrando cada campo que deve ser ajustado; [OK]
+- Configurar Tailwind para o Angular; [OK]
 - Criar um layout para o Front-end;
+  - Formulário de Login; [OK]
+  - Criação de Conta; [OK]
+  - Menu;
+  - Album;
 - Realizar o deploy da aplicação;

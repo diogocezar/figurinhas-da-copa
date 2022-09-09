@@ -47,6 +47,10 @@ export class SigninComponent implements OnInit {
     return true;
   }
 
+  login() {
+    this.router.navigate(['/login']);
+  }
+
   create() {
     console.log(this.form);
     if (!this.isFormValid()) return;

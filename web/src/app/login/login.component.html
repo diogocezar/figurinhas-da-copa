@@ -1,30 +1,91 @@
-<section class="container">
-  <form class="form" (ngSubmit)="login()" [formGroup]="form">
-    <h2 class="form__title">Login</h2>
-    <div class="form-field">
-      <label class="form-field__label" for="username">Email</label>
-      <input
-        class="form-field__input"
-        type="email"
-        placeholder="Email"
-        name="username"
-        formControlName="username"
-      />
+<body class="bg-white">
+  <div class="flex min-h-screen">
+    <div class="flex flex-row w-full">
+      <div
+        class="hidden lg:flex flex-col justify-between bg-[#ffe85c] lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg"
+      >
+        <div class="flex items-center justify-start space-x-3">
+          <span class="bg-black rounded-full w-8 h-8"></span>
+          <a href="#" class="font-medium text-xl">Figurinhas da Copa</a>
+        </div>
+        <div class="space-y-5">
+          <h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold">
+            Bem vindo ao sistema de Figurinhas da Copa
+          </h1>
+          <p class="text-lg">É a sua primeira vez aqui?</p>
+          <button
+            (click)="createAccount()"
+            class="inline-block flex-none px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
+          >
+            Crie uma nova conta
+          </button>
+        </div>
+        <p class="font-medium">© 2022 Figurinhas da Copa</p>
+      </div>
+      <div
+        class="flex flex-1 flex-col items-center justify-center px-10 relative"
+      >
+        <div class="flex lg:hidden justify-between items-center w-full py-4">
+          <div class="flex items-center justify-start space-x-3">
+            <span class="bg-black rounded-full w-6 h-6"></span>
+            <a href="#" class="font-medium text-lg">Figurinhas da Copa</a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span>Não tem cadastro?</span>
+            <a
+              (click)="createAccount()"
+              class="underline font-medium text-[#070eff]"
+            >
+              Cadastre-se agora
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-1 flex-col justify-center space-y-5 max-w-md">
+          <div class="flex flex-col space-y-2 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold">
+              Faça o login com a sua conta
+            </h2>
+            <p class="text-md md:text-xl">
+              Faça o login inserindo seu e-mail e senha
+            </p>
+          </div>
+
+          <form
+            class="flex flex-col max-w-md space-y-5"
+            (ngSubmit)="login()"
+            [formGroup]="form"
+          >
+            <input
+              type="email"
+              placeholder="Email"
+              name="username"
+              formControlName="username"
+              placeholder="neymar@gmail.com"
+              class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
+            />
+            <input
+              type="password"
+              name="password"
+              formControlName="password"
+              class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
+            />
+            <button
+              type="submit"
+              class="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
+            >
+              Entrar
+            </button>
+          </form>
+        </div>
+        <div
+          class="flex justify-center flex-col m-auto mb-16 text-center text-lg dark:text-slate-200"
+        >
+          <div *ngFor="let error of errors">
+            <p class="font-bold mb-1">{{ error }}</p>
+          </div>
+          <p>Este é um sistema OpenSource criado por Diogo Cezar</p>
+        </div>
+      </div>
     </div>
-    <div class="form-field">
-      <label class="form-field__label" for="password">Senha</label>
-      <input
-        class="form-field__input"
-        type="password"
-        name="password"
-        formControlName="password"
-      />
-    </div>
-    <div *ngFor="let error of errors">
-      <p class="alert">{{ error }}</p>
-    </div>
-    <div class="button-container">
-      <button class="button" type="submit">Entrar</button>
-    </div>
-  </form>
-</section>
+  </div>
+</body>

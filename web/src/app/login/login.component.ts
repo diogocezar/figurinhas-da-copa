@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       if (this.form.controls.password.errors?.required)
         this.errors.push('A senha é obrigatória.');
       if (this.form.controls.password.errors?.minlength)
-        this.errors.push('A senha deve ter no mínimo 6 caracteres.');
+        this.errors.push('A senha deve ter no mínimo 3 caracteres.');
       return false;
     }
     return true;
@@ -59,8 +59,12 @@ export class LoginComponent implements OnInit {
         null,
         [Validators.required, Validators.minLength(3), Validators.email],
       ],
-      password: [null, [Validators.required, Validators.minLength(6)]],
+      password: [null, [Validators.required, Validators.minLength(3)]],
     });
+  }
+
+  createAccount() {
+    this.router.navigate(['/create']);
   }
 
   ngOnInit(): void {
