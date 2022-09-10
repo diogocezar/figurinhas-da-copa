@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { LogoutComponent } from './logout/logout.component';
-import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { JwtInterceptor } from 'src/app/helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +21,6 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     SigninComponent,
     LogoutComponent,
-    MenuComponent,
   ],
   imports: [
     BrowserModule,

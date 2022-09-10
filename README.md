@@ -21,6 +21,12 @@ O que falta?
 - Criar um layout para o Front-end;
   - Formulário de Login; [OK]
   - Criação de Conta; [OK]
-  - Menu;
-  - Album;
+  - Criar o Layout do Album;
+    - Filtros na lateral amarela;
+    - Refazer o layout da exibição dos albuns;
+    - Botão de salvar fixo na tela;
 - Realizar o deploy da aplicação;
+  - Configurar GitHub actions;
+    - Realizar o build das imagens;
+    - Enviar para o repository do docker;
+    - Fazer o deploy na DigitalOcean;
