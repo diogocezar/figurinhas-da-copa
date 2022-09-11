@@ -1,4 +1,4 @@
-import { Sticker } from 'src/app/album/types/Sticker';
+import { Sticker } from 'src/app/pages/album/types/Sticker';
 
 type UpdateSticker = {
   stickerIds: Sticker[];

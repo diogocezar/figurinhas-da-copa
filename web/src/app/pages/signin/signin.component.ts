@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserCreate } from 'src/app/signin/types/UserCreate';
+import { UserCreate } from 'src/app/pages/signin/types/UserCreate';
 import { SignInService } from 'src/services/signin.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

@@ -1,0 +1,34 @@
+<h2 class="text-3xl md:text-4xl font-bold mb-10">{{ title }}</h2>
+<section id="fwc">
+  <div *ngFor="let plotSticker of plotStickers">
+    <div class="bg-[#ffe85c] p-12 rounded-lg">
+      <h3>{{ plotSticker.country.name }}</h3>
+      <h4>Porcentagem: {{ plotSticker.percentage }}%</h4>
+      <div
+        class="flex flex-column justify-center items-center flex-wrap"
+        *ngFor="let sticker of plotSticker.stickers"
+      >
+        <div
+          class=""
+          [ngClass]="{
+            active: sticker.quantity > 0,
+            hard: sticker.quantity > 1
+          }"
+        >
+          <p>{{ sticker.name }}</p>
+          <p>{{ sticker.quantity }}</p>
+          <button
+            (click)="handleChange(sticker.id, sticker.quantity, 'fwc', 'add')"
+          >
+            +
+          </button>
+          <button
+            (click)="handleChange(sticker.id, sticker.quantity, 'fwc', 'sub')"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

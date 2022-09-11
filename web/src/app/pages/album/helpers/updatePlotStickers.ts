@@ -1,4 +1,4 @@
-import CountryId from 'src/app/album/enum/CountryId';
+import CountryId from 'src/app/pages/album/enum/CountryId';
 
 export const updatePlotStickers = (
   plotStickers,

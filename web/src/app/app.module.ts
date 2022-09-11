@@ -3,17 +3,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './login/login.component';
-import { AlbumComponent } from './album/album.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AlbumComponent } from './pages/album/album.component';
 import { AppComponent } from './app.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SigninComponent } from './signin/signin.component';
-import { LogoutComponent } from './logout/logout.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { JwtInterceptor } from 'src/app/helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { StatisComponent } from './statis/statis.component';
+import { StatisComponent } from './components/statis/statis.component';
+import { StickersComponent } from './components/stickers/stickers.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { StatisComponent } from './statis/statis.component';
     SigninComponent,
     LogoutComponent,
     StatisComponent,
+    StickersComponent,
   ],
   imports: [
     BrowserModule,

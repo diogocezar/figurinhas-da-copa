@@ -1,5 +1,5 @@
-import CountryId from 'src/app/album/enum/CountryId';
-import CountryType from 'src/app/album/enum/CountryType';
+import CountryId from 'src/app/pages/album/enum/CountryId';
+import CountryType from 'src/app/pages/album/enum/CountryType';
 
 export const fill = (stickers, countries, type) => {
   const result = [];

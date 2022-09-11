@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import CountryId from './enum/CountryId';
-import CountryType from 'src/app/album/enum/CountryType';
+import CountryType from 'src/app/pages/album/enum/CountryType';
 import { AlbumService } from 'src/services/album.service';
-import { Sticker } from 'src/app/album/types/Sticker';
-import Country from 'src/app/album/types/Country';
-import PlotSticker from 'src/app/album/types/PlotSticker';
-import UpdateSticker from 'src/app/album/types/UpdateSticker';
-import { updatePlotStickers } from 'src/app/album/helpers/updatePlotStickers';
+import { Sticker } from 'src/app/pages/album/types/Sticker';
+import Country from 'src/app/pages/album/types/Country';
+import PlotSticker from 'src/app/pages/album/types/PlotSticker';
+import UpdateSticker from 'src/app/pages/album/types/UpdateSticker';
+import { updatePlotStickers } from 'src/app/pages/album/helpers/updatePlotStickers';
 import {
   filterByType,
   filterByRepeated,
   filterByMissing,
   filterByUnique,
-} from 'src/app/album/helpers/filter';
-import { generateTextToCopy } from 'src/app/album/helpers/generateTextToCopy';
-import { fill } from 'src/app/album/helpers/fill';
+} from 'src/app/pages/album/helpers/filter';
+import { generateTextToCopy } from 'src/app/pages/album/helpers/generateTextToCopy';
+import { fill } from 'src/app/pages/album/helpers/fill';
 import { Clipboard } from '@angular/cdk/clipboard';
 import {
   getCompleted,
   getCompletedPercentage,
   getRepeated,
   getTotal,
-} from 'src/app/album/helpers/counters';
+} from 'src/app/pages/album/helpers/counters';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -173,6 +173,10 @@ export class AlbumComponent implements OnInit {
         }
       );
     }
+  }
+
+  reciverHandleChange(event) {
+    this.handleChange(event.id, event.quantity, event.type, event.operation);
   }
 
   handleChange(id, quantity, type, operation) {

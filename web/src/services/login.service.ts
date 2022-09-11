@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import LoginOutput from 'src/app/login/types/LoginOutputType';
+import LoginOutput from 'src/app/pages/login/types/LoginOutputType';
 import { environment } from '../environments/environment';
 
 @Injectable({

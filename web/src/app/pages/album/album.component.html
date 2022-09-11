@@ -121,140 +121,23 @@
             [repeatedStickers]="repeatedStickers"
           ></app-statis>
 
-          <h2 class="text-3xl md:text-4xl font-bold mb-10">FWC</h2>
-          <section id="fwc">
-            <div *ngFor="let plotStickerFwc of plotStickersFwc">
-              <div class="bg-[#ffe85c] p-12 rounded-lg">
-                <h3>{{ plotStickerFwc.country.name }}</h3>
-                <h4>Porcentagem: {{ plotStickerFwc.percentage }}%</h4>
-                <div
-                  class="flex flex-column justify-center items-center flex-wrap"
-                  *ngFor="let sticker of plotStickerFwc.stickers"
-                >
-                  <div
-                    class=""
-                    [ngClass]="{
-                      active: sticker.quantity > 0,
-                      hard: sticker.quantity > 1
-                    }"
-                  >
-                    <p>{{ sticker.name }}</p>
-                    <p>{{ sticker.quantity }}</p>
-                    <button
-                      (click)="
-                        handleChange(sticker.id, sticker.quantity, 'fwc', 'add')
-                      "
-                    >
-                      +
-                    </button>
-                    <button
-                      (click)="
-                        handleChange(sticker.id, sticker.quantity, 'fwc', 'sub')
-                      "
-                    >
-                      -
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <app-stickers
+            title="FWC"
+            [plotStickers]="plotStickersFwc"
+            (handleChangeSticketsComponent)="reciverHandleChange($event)"
+          ></app-stickers>
 
-          <h2 class="text-3xl md:text-4xl font-bold mb-10">Countries</h2>
-          <section id="countries">
-            <div *ngFor="let plotStickerCountry of plotStickersCountries">
-              <div class="country">
-                <h3>{{ plotStickerCountry.country.name }}</h3>
-                <h4>Porcentagem: {{ plotStickerCountry.percentage }}%</h4>
-                <div class="stickers">
-                  <div *ngFor="let sticker of plotStickerCountry.stickers">
-                    <div
-                      class="sticker"
-                      [ngClass]="{
-                        active: sticker.quantity > 0,
-                        hard: sticker.quantity > 1
-                      }"
-                    >
-                      <p>{{ sticker.name }}</p>
-                      <p>{{ sticker.quantity }}</p>
-                      <button
-                        (click)="
-                          handleChange(
-                            sticker.id,
-                            sticker.quantity,
-                            'countries',
-                            'add'
-                          )
-                        "
-                      >
-                        +
-                      </button>
-                      <button
-                        (click)="
-                          handleChange(
-                            sticker.id,
-                            sticker.quantity,
-                            'countries',
-                            'sub'
-                          )
-                        "
-                      >
-                        -
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <app-stickers
+            title="Países da Copa"
+            [plotStickers]="plotStickersCountries"
+            (handleChangeSticketsComponent)="reciverHandleChange($event)"
+          ></app-stickers>
 
-          <h2 class="text-3xl md:text-4xl font-bold mb-10">Coca Cola</h2>
-          <section id="coc">
-            <div *ngFor="let plotStickerCoc of plotStickersCoc">
-              <div class="country">
-                <h3>{{ plotStickerCoc.country.name }}</h3>
-                <h4>Porcentagem: {{ plotStickerCoc.percentage }}%</h4>
-                <div class="stickers">
-                  <div *ngFor="let sticker of plotStickerCoc.stickers">
-                    <div
-                      class="sticker"
-                      [ngClass]="{
-                        active: sticker.quantity > 0,
-                        hard: sticker.quantity > 1
-                      }"
-                    >
-                      <p>{{ sticker.name }}</p>
-                      <p>{{ sticker.quantity }}</p>
-                      <button
-                        (click)="
-                          handleChange(
-                            sticker.id,
-                            sticker.quantity,
-                            'coc',
-                            'add'
-                          )
-                        "
-                      >
-                        +
-                      </button>
-                      <button
-                        (click)="
-                          handleChange(
-                            sticker.id,
-                            sticker.quantity,
-                            'coc',
-                            'sub'
-                          )
-                        "
-                      >
-                        -
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <app-stickers
+            title="Coca-cola"
+            [plotStickers]="plotStickersCoc"
+            (handleChangeSticketsComponent)="reciverHandleChange($event)"
+          ></app-stickers>
         </div>
       </section>
     </div>

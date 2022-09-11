@@ -1,4 +1,4 @@
-import Country from 'src/app/album/types/Country';
+import Country from 'src/app/pages/album/types/Country';
 
 type BaseSticker = {
   id: number;
