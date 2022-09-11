@@ -13,6 +13,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { JwtInterceptor } from 'src/app/helpers/jwt.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { StatisComponent } from './statis/statis.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     SigninComponent,
     LogoutComponent,
+    StatisComponent,
   ],
   imports: [
     BrowserModule,

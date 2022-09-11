@@ -22,7 +22,10 @@ O que falta?
   - Formulário de Login; [OK]
   - Criação de Conta; [OK]
   - Criar o Layout do Album;
-    - Filtros na lateral amarela;
+    - Filtros na lateral amarela; [OK]
+    - Criar painel para estatísticas; [OK]
+    - Criar componente para renderizar país e suas figurinhas;
+    - Realizar os ajustes responsivos;
     - Refazer o layout da exibição dos albuns;
     - Botão de salvar fixo na tela;
 - Realizar o deploy da aplicação;
