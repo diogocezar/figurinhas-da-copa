@@ -1,32 +1,23 @@
 <h2 class="text-3xl md:text-4xl font-bold mb-10">{{ title }}</h2>
 <section id="fwc">
   <div *ngFor="let plotSticker of plotStickers">
-    <div class="bg-[#ffe85c] p-12 rounded-lg">
+    <div class="bg-[#f0f0f0] p-12 rounded-lg">
       <h3>{{ plotSticker.country.name }}</h3>
-      <h4>Porcentagem: {{ plotSticker.percentage }}%</h4>
-      <div
-        class="flex flex-column justify-center items-center flex-wrap"
-        *ngFor="let sticker of plotSticker.stickers"
-      >
+      <div class="w-full bg-gray-300 rounded-full mb-10">
         <div
-          class=""
-          [ngClass]="{
-            active: sticker.quantity > 0,
-            hard: sticker.quantity > 1
-          }"
+          class="bg-black text-s font-medium text-blue-100 text-center p-2 leading-none rounded-l-full"
+          [ngStyle]="{ width: plotSticker.percentage + '%' }"
         >
-          <p>{{ sticker.name }}</p>
-          <p>{{ sticker.quantity }}</p>
-          <button
-            (click)="handleChange(sticker.id, sticker.quantity, 'fwc', 'add')"
-          >
-            +
-          </button>
-          <button
-            (click)="handleChange(sticker.id, sticker.quantity, 'fwc', 'sub')"
-          >
-            -
-          </button>
+          {{ plotSticker.percentage }}%
+        </div>
+      </div>
+      <div class="grid gap-4 grid-cols-5 grid-rows-3">
+        <div *ngFor="let sticker of plotSticker.stickers">
+          <app-sticker
+            [sticker]="sticker"
+            [type]="type"
+            (handleChangeStickerComponent)="reciverHandleChange($event)"
+          ></app-sticker>
         </div>
       </div>
     </div>

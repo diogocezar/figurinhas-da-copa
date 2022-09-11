@@ -24,10 +24,13 @@ O que falta?
   - Criar o Layout do Album;
     - Filtros na lateral amarela; [OK]
     - Criar painel para estatísticas; [OK]
-    - Criar componente para renderizar país e suas figurinhas;
+    - Criar componente para renderizar país e suas figurinhas; [OK]
+    - Reorganizar as pastas dos componentes e páginas; [OK]
+    - Criar componente para uma única figurinha; [OK]
+    - Ajustar as figurinhas como um album; [OK]
+    - Alterar as cores das figurinhas;
+    - Alterar a cor do scrollbar;
     - Realizar os ajustes responsivos;
-    - Refazer o layout da exibição dos albuns;
-    - Botão de salvar fixo na tela;
 - Realizar o deploy da aplicação;
   - Configurar GitHub actions;
     - Realizar o build das imagens;

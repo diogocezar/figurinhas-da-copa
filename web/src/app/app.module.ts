@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { StatisComponent } from './components/statis/statis.component';
 import { StickersComponent } from './components/stickers/stickers.component';
+import { StickerComponent } from './components/sticker/sticker.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { StickersComponent } from './components/stickers/stickers.component';
     LogoutComponent,
     StatisComponent,
     StickersComponent,
+    StickerComponent,
   ],
   imports: [
     BrowserModule,

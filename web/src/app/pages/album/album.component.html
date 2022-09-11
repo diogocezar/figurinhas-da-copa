@@ -123,20 +123,23 @@
 
           <app-stickers
             title="FWC"
+            type="fwc"
             [plotStickers]="plotStickersFwc"
-            (handleChangeSticketsComponent)="reciverHandleChange($event)"
+            (handleChangeStickersComponent)="reciverHandleChange($event)"
           ></app-stickers>
 
           <app-stickers
             title="Países da Copa"
+            type="countries"
             [plotStickers]="plotStickersCountries"
-            (handleChangeSticketsComponent)="reciverHandleChange($event)"
+            (handleChangeStickersComponent)="reciverHandleChange($event)"
           ></app-stickers>
 
           <app-stickers
             title="Coca-cola"
+            type="coc"
             [plotStickers]="plotStickersCoc"
-            (handleChangeSticketsComponent)="reciverHandleChange($event)"
+            (handleChangeStickersComponent)="reciverHandleChange($event)"
           ></app-stickers>
         </div>
       </section>
