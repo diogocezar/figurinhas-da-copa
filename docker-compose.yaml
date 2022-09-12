@@ -12,10 +12,10 @@ services:
   web:
     build: ./web/
     ports:
-      - "3333:3333"
+      - "4000:4000"
     depends_on:
       - db
-    command: yarn start
+    command: yarn start:prod
     volumes:
       - ./web:/usr/src/web/
   db:
