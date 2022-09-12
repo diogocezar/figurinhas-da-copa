@@ -9,15 +9,15 @@ services:
     command: yarn start:prod
     volumes:
       - ./api:/usr/src/api/
-  # web:
-  #   build: ./web/Dockerfile
-  #   ports:
-  #     - "3333:3333"
-  #   depends_on:
-  #     - db
-  #   command: yarn start
-  #   volumes:
-  #     - ./web:/usr/src/web/
+  web:
+    build: ./web/Dockerfile
+    ports:
+      - "3333:3333"
+    depends_on:
+      - db
+    command: yarn start
+    volumes:
+      - ./web:/usr/src/web/
   db:
     image: postgres:14.1-alpine
     restart: always
