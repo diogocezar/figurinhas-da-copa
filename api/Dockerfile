@@ -8,13 +8,13 @@ WORKDIR /usr/src/api
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install
+RUN yarn
 
 # Bundle app source
 COPY . .
 
 # Creates a "dist" folder with the production build
-RUN npm run build
+RUN yarn build
 
 # Start the server using the production build
 CMD [ "node", "dist/main.js" ]
