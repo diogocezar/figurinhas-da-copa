@@ -3,21 +3,22 @@ on:
   push:
     branches: [main]
 jobs:
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+  checkout:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Realiza a instalação das dependências
-      uses: actions/setup-node@v2
-      with:
-        node-version: "16"
-        cache: "yarn"
-    - run: |
-        cd web
-        yarn install --frozen-lockfile --production=false
-        cd ../
-        cd api
-        yarn install --frozen-lockfile --production=false
+      - name: Realiza a instalação das dependências
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+          cache: "yarn"
+      - run: |
+          cd web
+          yarn install --frozen-lockfile --production=false
+          cd ../
+          cd api
+          yarn install --frozen-lockfile --production=false
   build:
     name: Cria a imagem Docker
     runs-on: ubuntu-latest
