@@ -1,5 +1,5 @@
 # Base image
-FROM node:18
+FROM node:16.10-alpine
 
 # Create app directory
 WORKDIR /usr/src/api
@@ -8,13 +8,13 @@ WORKDIR /usr/src/api
 COPY package*.json ./
 
 # Install app dependencies
-RUN yarn
+RUN npm install --force
 
 # Bundle app source
 COPY . .
 
 # Creates a "dist" folder with the production build
-RUN yarn build
+RUN npm run build
 
 # Start the server using the production build
 # CMD [ "node", "dist/src/main.js" ]
