@@ -13,10 +13,9 @@ services:
   web:
     build: ./web/
     ports:
-      - "4000:4000"
+      - "4000:80"
     depends_on:
       - db
-    command: yarn start:prod
     volumes:
       - ./web:/usr/src/web/
       - "/usr/src/web/node_modules"
