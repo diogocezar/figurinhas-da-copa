@@ -18,8 +18,8 @@ services:
       - db
     command: yarn start:prod
     volumes:
-      - ./api:/usr/src/api/
-      - "/usr/src/api/node_modules"
+      - ./api:/usr/api/
+      - "/usr/api/node_modules"
   web:
     build: ./web/
     ports:
@@ -27,8 +27,8 @@ services:
     depends_on:
       - api
     volumes:
-      - ./web:/usr/src/web/
-      - "/usr/src/web/node_modules"
+      - ./web:/usr/web/
+      - "/usr/web/node_modules"
 volumes:
   db:
     driver: local
