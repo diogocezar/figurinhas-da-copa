@@ -7,8 +7,16 @@ WORKDIR /usr/src/api
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
+# generated prisma files
+COPY prisma ./prisma/
+
+# COPY ENV variable
+COPY .env ./
+
 # Install app dependencies
 RUN npm install --force
+
+RUN npx prisma generate
 
 # Bundle app source
 COPY . .
