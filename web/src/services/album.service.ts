@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class AlbumService {
-  private baseURL = environment.apiBaseUrl;
+  private baseURL = 'http://localhost:3333';
 
   constructor(private httpClient: HttpClient) {}
 
