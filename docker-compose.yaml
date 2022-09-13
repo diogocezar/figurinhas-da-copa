@@ -9,6 +9,7 @@ services:
     command: yarn start:prod
     volumes:
       - ./api:/usr/src/api/
+      - "/usr/src/api/node_modules"
   web:
     build: ./web/
     ports:
@@ -18,14 +19,15 @@ services:
     command: yarn start:prod
     volumes:
       - ./web:/usr/src/web/
+      - "/usr/src/web/node_modules"
   db:
     image: postgres:14.1-alpine
     restart: always
     environment:
-      - POSTGRES_USER={$POSTGRES_USER}
-      - POSTGRES_PASSWORD={$POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_USER}
     ports:
-      - "5432:35432"
+      - "5432:5432"
     volumes:
       - ./database:/var/lib/postgresql/data
 volumes:
