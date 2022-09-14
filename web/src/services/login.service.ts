@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class LoginService {
-  private baseURL = 'http://localhost:3333';
+  private baseURL = environment.apiBaseUrl;
 
   constructor(private httpClient: HttpClient) {}
 

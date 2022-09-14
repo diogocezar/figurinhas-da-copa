@@ -5,7 +5,7 @@ COPY ./package.json .
 RUN npm cache clean --force
 RUN npm install --force
 COPY . .
-RUN ng build
+RUN ng build --configuration=production
 
 FROM nginx:latest AS ngi
 # Copying compiled code and nginx config to different folder
