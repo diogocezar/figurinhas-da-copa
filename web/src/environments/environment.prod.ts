@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://localhost:3333',
+  apiBaseUrl: 'http://api.figurinhas.diogocezar.com',
 };
