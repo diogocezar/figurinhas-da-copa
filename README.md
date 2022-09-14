@@ -28,9 +28,10 @@ O que falta?
     - Reorganizar as pastas dos componentes e páginas; [OK]
     - Criar componente para uma única figurinha; [OK]
     - Ajustar as figurinhas como um album; [OK]
+    - Transformar Front em PWA; [OK]
+    - Realizar os ajustes responsivos;
     - Alterar as cores das figurinhas;
     - Alterar a cor do scrollbar;
-    - Realizar os ajustes responsivos;
 - Realizar o deploy da aplicação;
   - Configurar GitHub actions;
     - Realizar o build das imagens;

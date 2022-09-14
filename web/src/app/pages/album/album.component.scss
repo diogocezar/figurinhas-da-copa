@@ -1,0 +1,27 @@
+@media (min-width: 640px) {
+  .responsive-menu {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .responsive-menu {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 1024px) {
+  .responsive-menu {
+    margin-left: 24rem;
+    width: calc(100% - 24rem);
+  }
+}
+@media (min-width: 1280px) {
+  .responsive-menu {
+    margin-left: 32rem;
+    width: calc(100% - 32rem);
+  }
+}
+
+@media (min-width: 1536px) {
+}
