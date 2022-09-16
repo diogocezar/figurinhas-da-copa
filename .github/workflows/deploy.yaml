@@ -9,7 +9,11 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: |
+          echo "Diretório"
           cd /home/admin/www/figurinhas-da-copa
-          docker compose stop
+          echo "Parando os Containers"
+          docker compose down
+          echo "Realizando o build da api web"
           docker compose build web
-          docker compose start
+          echo "Reiniciando os containers"
+          docker compose up -d
