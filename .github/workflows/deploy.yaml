@@ -8,4 +8,8 @@ jobs:
     name: Executa os comandos no servidor
     runs-on: self-hosted
     steps:
-      - run: echo "teste"
+      - run: |
+        cd /home/admin/www/figurinhas-da-copa
+        docker compose stop
+        docker compose build web
+        docker compose start
