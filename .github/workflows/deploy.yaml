@@ -9,7 +9,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - run: |
-        cd /home/admin/www/figurinhas-da-copa
-        docker compose stop
-        docker compose build web
-        docker compose start
+          cd /home/admin/www/figurinhas-da-copa
+          docker compose stop
+          docker compose build web
+          docker compose start
