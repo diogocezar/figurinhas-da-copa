@@ -1,7 +1,7 @@
 {
   "name": "Figurinhas da Copa",
-  "short_name": "Figs Copa",
-  "theme_color": "#ffe85c",
+  "short_name": "Figurinhas",
+  "theme_color": "#000",
   "background_color": "#ffe85c",
   "display": "standalone",
   "orientation": "portrait",

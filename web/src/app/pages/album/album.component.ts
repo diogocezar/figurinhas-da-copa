@@ -23,6 +23,7 @@ import {
   getTotal,
 } from 'src/app/pages/album/helpers/counters';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-album',
@@ -50,10 +51,13 @@ export class AlbumComponent implements OnInit {
   completedStickers: number;
   repeatedStickers: number;
 
+  isMenuOpen: true;
+
   constructor(
     private albumService: AlbumService,
     private clipboard: Clipboard,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {
     this.updateStickers = {
       stickerIds: [],
@@ -237,6 +241,10 @@ export class AlbumComponent implements OnInit {
     this.toastrService.success(
       'As figurinhas foram copiadas para a área de transferência.'
     );
+  }
+
+  logout() {
+    this.router.navigate(['/logout']);
   }
 
   filterRepeated() {

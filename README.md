@@ -29,11 +29,15 @@ O que falta?
     - Criar componente para uma única figurinha; [OK]
     - Ajustar as figurinhas como um album; [OK]
     - Transformar Front em PWA; [OK]
-    - Realizar os ajustes responsivos;
+    - Realizar os ajustes responsivos; [OK]
+    - Figurinhas por coluna; [OK]
+    - Ajustar Títulos dos Países; [OK]
+    - Colocar seleção amarela; [OK]
+    - Menu na versão mobile;
     - Alterar as cores das figurinhas;
-    - Alterar a cor do scrollbar;
+    - Alterar a cor do scrollbar; [OK]
 - Realizar o deploy da aplicação;
-  - Configurar GitHub actions;
-    - Realizar o build das imagens;
-    - Enviar para o repository do docker;
-    - Fazer o deploy na DigitalOcean;
+  - Configurar GitHub actions; [OK]
+    - Realizar o build das imagens; [OK]
+    - Enviar para o repository do docker; [OK]
+    - Fazer o deploy na DigitalOcean; [OK]

@@ -1,8 +1,10 @@
-<h2 class="text-3xl md:text-4xl font-bold mb-10">{{ title }}</h2>
+<h2 class="text-3xl md:text-4xl font-bold mb-3">{{ title }}</h2>
 <section id="fwc">
   <div *ngFor="let plotSticker of plotStickers">
-    <div class="bg-[#f0f0f0] p-12 rounded-lg">
-      <h3>{{ plotSticker.country.name }}</h3>
+    <div class="bg-[#f0f0f0] p-6 rounded-lg">
+      <h3 class="text-3xl md:text-4xl font-bold mb-3">
+        {{ plotSticker.country.name }}
+      </h3>
       <div class="w-full bg-gray-300 rounded-full mb-10">
         <div
           class="bg-black text-s font-medium text-blue-100 text-center p-2 leading-none rounded-l-full"

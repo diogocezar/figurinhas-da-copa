@@ -11,6 +11,8 @@ jobs:
       - run: |
           echo "Diretório Raiz"
           cd /home/admin/www/figurinhas-da-copa
+          echo "Diretório Raiz"
+          git pull origin main
           echo "Parando os Containers"
           docker compose down
           echo "Realizando o build da api web"
