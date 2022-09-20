@@ -18,6 +18,7 @@ import { StickersComponent } from './components/stickers/stickers.component';
 import { StickerComponent } from './components/sticker/sticker.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { environment } from '../environments/environment';
     StatisComponent,
     StickersComponent,
     StickerComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { environment } from '../environments/environment';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [

@@ -33,10 +33,13 @@ O que falta?
     - Figurinhas por coluna; [OK]
     - Ajustar Títulos dos Países; [OK]
     - Colocar seleção amarela; [OK]
-    - Menu na versão mobile;
-    - Alterar as cores das figurinhas;
+    - Fazer salvar ao adicionar ou remover figurinha; [OK]
+    - Mostrar cadastro apenas na versão mobile no login; [OK]
+    - Menu na versão mobile; [OK]
+    - Alterar as cores das figurinhas; [OK]
+    - Criar filtro de figurinhas por input;
     - Alterar a cor do scrollbar; [OK]
-- Realizar o deploy da aplicação;
+- Realizar o deploy da aplicação; [OK]
   - Configurar GitHub actions; [OK]
     - Realizar o build das imagens; [OK]
     - Enviar para o repository do docker; [OK]

@@ -217,13 +217,13 @@ export class AlbumComponent implements OnInit {
       );
     }
     this.handleUpdateList(id, newQuantity);
+    this.save();
   }
 
   save() {
     this.albumService.updateAlbum(this.updateStickers).subscribe({
       next: (response) => {
         this.getFromServer();
-        this.toastrService.success('As alterações foram salvas com sucesso!');
       },
       error: (error) => {
         this.toastrService.error('Houve um erro ao salvar as alterações!');
@@ -269,5 +269,28 @@ export class AlbumComponent implements OnInit {
     this.plotStickersCountries = filterByUnique(this.plotStickersCountries);
     this.plotStickersCoc = filterByUnique(this.plotStickersCoc);
     this.toastrService.info('Mostrando apenas as figurinhas únicas.');
+  }
+
+  reciverHandleChangeMenu(option) {
+    switch (option) {
+      case 'repeated':
+        this.filterRepeated();
+        break;
+      case 'missing':
+        this.filterMissing();
+        break;
+      case 'unique':
+        this.filterUnique();
+        break;
+      case 'remove':
+        this.fillPlotStickers();
+        break;
+      case 'copy':
+        this.copy();
+        break;
+      case 'logout':
+        this.logout();
+        break;
+    }
   }
 }

@@ -1,4 +1,11 @@
-<div class="p-6 rounded-lg shadow-lg bg-white">
+<div
+  class="p-6 rounded-lg shadow-lg"
+  [ngClass]="{
+    one: sticker.quantity > 0,
+    more: sticker.quantity > 1,
+    normal: sticker.quantity === 0
+  }"
+>
   <h5 class="text-gray-900 text-center text-2xl leading-tight font-medium mb-2">
     {{ sticker.name }}
   </h5>
